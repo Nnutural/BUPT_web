@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个性化校园卡设计</title>
@@ -79,10 +79,10 @@
 
         .card-front,
         .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
             border-radius: 0.5rem;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
@@ -139,6 +139,22 @@
             font-size: 0.75rem;
             opacity: 0.6;
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-photo img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-photo #photoPlaceholder {
+            position: relative;
+            z-index: 1;
         }
 
         .card-info {
@@ -419,10 +435,10 @@
 
         .gradient-green {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
 <div class="container">
     <!-- Header -->
     <div class="header">
@@ -446,11 +462,14 @@
                                 <div class="card-title">北京邮电大学</div>
                                 <div class="card-type" id="cardTypeDisplay">学生证</div>
                             </div>
-                            <img src="bupt-logo.png" alt="BUPT Logo" class="card-logo">
+                            <img src="img/bupt-logo.png" alt="BUPT Logo" class="card-logo">
                         </div>
 
                         <div class="card-center">
-                            <div class="card-photo">照片</div>
+                            <div class="card-photo">
+                                <img id="displayPhoto" src="img/dog.png" alt="照片" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.25rem; display: block;">
+                                <span id="photoPlaceholder" style="display: none;">照片</span>
+                            </div>
                             <div class="card-info">
                                 <div class="info-item">
                                     <div class="info-label">姓名</div>
@@ -540,6 +559,12 @@
                     <input type="text" id="inputDept" placeholder="请输入学院" value="计算机学院" oninput="updateDisplay()">
                 </div>
 
+                <div class="form-group">
+                    <label for="inputPhoto">个人照片</label>
+                    <input type="file" id="inputPhoto" accept="image/*" onchange="updatePhoto(event)" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background: white;">
+                    <small style="color: #6b7280; display: block; margin-top: 0.25rem;">支持 JPG、PNG 等图片格式</small>
+                </div>
+
                 <div class="button-group">
                     <button class="btn-primary" onclick="alert('编辑功能已激活')">编辑信息</button>
                     <button class="btn-outline" onclick="window.print()">🖨️ 打印</button>
@@ -593,6 +618,22 @@
         document.getElementById('displayDept').textContent = dept;
     }
 
+    // Update photo when file is selected
+    function updatePhoto(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photoImg = document.getElementById('displayPhoto');
+                const photoPlaceholder = document.getElementById('photoPlaceholder');
+                photoImg.src = e.target.result;
+                photoImg.style.display = 'block';
+                photoPlaceholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
     // Set card type
     function setCardType(type) {
         currentCardType = type;
@@ -634,6 +675,14 @@
     // Initialize
     updateDisplay();
     setTheme('purple');
+    
+    // Initialize default photo
+    const photoImg = document.getElementById('displayPhoto');
+    const photoPlaceholder = document.getElementById('photoPlaceholder');
+    if (photoImg.src && photoImg.src.includes('dog.png')) {
+        photoImg.style.display = 'block';
+        photoPlaceholder.style.display = 'none';
+    }
 </script>
-</body>
+  </body>
 </html>
