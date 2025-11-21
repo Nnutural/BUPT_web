@@ -14,6 +14,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     -->
+    <style>
+      /* Stabilize flip card and keep both faces same size; allow 3D overflow to show during rotation */
+      .aspect-video.cursor-pointer {
+        overflow: visible;
+      }
+      .aspect-video.cursor-pointer > div > div {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+    </style>
     <script type="module" crossorigin src="/assets/index-DHAd2s1W.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-PEiK2a8v.css">
   </head>
