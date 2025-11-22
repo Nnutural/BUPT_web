@@ -7,6 +7,10 @@ const themeGradients = {
 
 let currentTheme = 'blue';
 let currentCardType = 'student';
+const backImageUrl = "img/view/沙河校区校园风景/7.沙河校区 公共教学楼1.jpg";
+// const backImageUrl = "img/view/沙河校区校园风景/6.沙河校区 十字路口.jpg";
+// const backImageUrl = "img/view/西土城路校区校园风景/1.西土城路校区 西门.jpg";
+
 
 // Card flip functionality
 document.getElementById('cardFlip').addEventListener('click', function() {
@@ -67,11 +71,14 @@ function setTheme(theme) {
     currentTheme = theme;
     const cardFront = document.getElementById('cardFront');
     const cardBack = document.getElementById('cardBack');
-    const gradient = themeGradients[theme];
 
-    // 设置卡片背景：正面为白色，背面为渐变背景
+    // 设置卡片背景：正面为白色，背面为全幅背景照片
     cardFront.style.background = 'white';
-    cardBack.style.background = gradient;
+    cardBack.style.backgroundImage = `url('${backImageUrl}')`;
+    cardBack.style.backgroundSize = 'cover';
+    cardBack.style.backgroundPosition = 'center';
+    cardBack.style.backgroundRepeat = 'no-repeat';
+    cardBack.style.backgroundBlendMode = 'normal';
 
     // 移除之前为信息部分设置的额外样式（因为整个正面已经是白色）
     const cardCenter = cardFront.querySelector('.card-center');
