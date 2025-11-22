@@ -1,11 +1,3 @@
-const themeGradients = {
-    purple: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    pink: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    blue: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    green: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-};
-
-let currentTheme = 'blue';
 let currentCardType = 'student';
 const backImageUrl = "img/view/沙河校区校园风景/7.沙河校区 公共教学楼1.jpg";
 // const backImageUrl = "img/view/沙河校区校园风景/6.沙河校区 十字路口.jpg";
@@ -68,6 +60,24 @@ function updateCardTypeButtons(selectedType) {
     }
 }
 
+// Set card backgrounds (front white, back photo)
+function applyCardBackground() {
+    const cardFront = document.getElementById('cardFront');
+    const cardBack = document.getElementById('cardBack');
+
+    if (cardFront) {
+        cardFront.style.background = 'white';
+    }
+
+    if (cardBack) {
+        cardBack.style.backgroundImage = `url('${backImageUrl}')`;
+        cardBack.style.backgroundSize = 'cover';
+        cardBack.style.backgroundPosition = 'center';
+        cardBack.style.backgroundRepeat = 'no-repeat';
+        cardBack.style.backgroundBlendMode = 'normal';
+    }
+}
+
 // Set card type
 function setCardType(type, evt) {
     currentCardType = type;
@@ -88,47 +98,9 @@ function setCardType(type, evt) {
     }
 }
 
-// Set theme
-function setTheme(theme) {
-    currentTheme = theme;
-    const cardFront = document.getElementById('cardFront');
-    const cardBack = document.getElementById('cardBack');
-
-    // 设置卡片背景：正面为白色，背面为全幅背景照片
-    cardFront.style.background = 'white';
-    cardBack.style.backgroundImage = `url('${backImageUrl}')`;
-    cardBack.style.backgroundSize = 'cover';
-    cardBack.style.backgroundPosition = 'center';
-    cardBack.style.backgroundRepeat = 'no-repeat';
-    cardBack.style.backgroundBlendMode = 'normal';
-
-    // 移除之前为信息部分设置的额外样式（因为整个正面已经是白色）
-    const cardCenter = cardFront.querySelector('.card-center');
-    if (cardCenter) {
-        cardCenter.style.background = '';
-        cardCenter.style.padding = '';
-        cardCenter.style.borderRadius = '';
-    }
-
-    // Update active button
-    const themeButtons = document.querySelectorAll('.theme-btn');
-    themeButtons.forEach(btn => {
-        btn.classList.remove('active');
-        // 通过按钮的类名匹配主题（如 theme-purple 匹配 'purple'）
-        if (btn.classList.contains(`theme-${theme}`)) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // 如果通过按钮点击调用，确保点击的按钮被激活
-    if (typeof event !== 'undefined' && event.target) {
-        event.target.classList.add('active');
-    }
-}
-
 // Initialize
 updateDisplay();
-setTheme('blue');
+applyCardBackground();
 updateCardTypeButtons(currentCardType);
 
 // Initialize default photo

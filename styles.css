@@ -424,50 +424,6 @@ button {
     color: #2563eb;
 }
 
-.theme-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-}
-
-.theme-btn {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 0.375rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-}
-
-.theme-btn:hover {
-    transform: scale(1.05);
-}
-
-.theme-btn.active {
-    ring: 2px;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05);
-}
-
-.theme-purple {
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-}
-
-.theme-pink {
-    background: linear-gradient(135deg, #f472b6 0%, #ef4444 100%);
-}
-
-.theme-blue {
-    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-}
-
-.theme-green {
-    background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
-}
-
 .card.info-card {
     background-color: #eff6ff;
     border: 1px solid #bfdbfe;
@@ -488,21 +444,4 @@ button {
     color: #6b7280;
     font-size: 0.875rem;
     margin-top: 1rem;
-}
-
-/* Gradient backgrounds for cards */
-.gradient-purple {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.gradient-pink {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.gradient-blue {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.gradient-green {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
