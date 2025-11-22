@@ -1,7 +1,15 @@
 let currentCardType = 'student';
-const backImageUrl = "img/view/沙河校区校园风景/7.沙河校区 公共教学楼1.jpg";
-// const backImageUrl = "img/view/沙河校区校园风景/6.沙河校区 十字路口.jpg";
-// const backImageUrl = "img/view/西土城路校区校园风景/1.西土城路校区 西门.jpg";
+const frontWatermarks = {
+    student: "img/outline-bupt/西土城 主楼.png",
+    staff: "img/outline-bupt/沙河 甲子钟.png"
+};
+
+const backImages = {
+    student: "img/view/沙河校区校园风景/7.沙河校区 公共教学楼1.jpg",
+    // staff: "img/view/沙河校区校园风景/4.沙河校区 甲子钟.jpg"
+    staff: "img/view/沙河校区校园风景/6.沙河校区 十字路口.jpg"
+
+};
 
 
 // Card flip functionality
@@ -61,18 +69,20 @@ function updateCardTypeButtons(selectedType) {
 }
 
 // Set card backgrounds (front white, back photo)
-function applyCardBackground() {
+function applyCardBackground(type = currentCardType) {
     const cardFront = document.getElementById('cardFront');
     const cardBack = document.getElementById('cardBack');
+    const backImage = backImages[type] || backImages.student;
+    const backPosition = type === 'staff' ? 'center 20%' : 'center';
 
     if (cardFront) {
         cardFront.style.background = 'white';
     }
 
     if (cardBack) {
-        cardBack.style.backgroundImage = `url('${backImageUrl}')`;
+        cardBack.style.backgroundImage = `url('${backImage}')`;
         cardBack.style.backgroundSize = 'cover';
-        cardBack.style.backgroundPosition = 'center';
+        cardBack.style.backgroundPosition = backPosition;
         cardBack.style.backgroundRepeat = 'no-repeat';
         cardBack.style.backgroundBlendMode = 'normal';
     }
@@ -82,6 +92,13 @@ function applyCardBackground() {
 function setCardType(type, evt) {
     currentCardType = type;
     updateCardTypeButtons(type);
+    applyCardBackground(type);
+
+    const watermarkImg = document.querySelector('.card-watermark');
+    const nextWatermark = frontWatermarks[type] || frontWatermarks.student;
+    if (watermarkImg) {
+        watermarkImg.src = nextWatermark;
+    }
 
     if (type === 'student') {
         document.getElementById('cardTypeDisplay').textContent = '学生卡';
@@ -100,7 +117,7 @@ function setCardType(type, evt) {
 
 // Initialize
 updateDisplay();
-applyCardBackground();
+applyCardBackground(currentCardType);
 updateCardTypeButtons(currentCardType);
 
 // Initialize default photo
@@ -110,4 +127,3 @@ if (photoImg.src && photoImg.src.includes('dog.png')) {
     photoImg.style.display = 'block';
     photoPlaceholder.style.display = 'none';
 }
-
