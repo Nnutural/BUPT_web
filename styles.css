@@ -133,8 +133,8 @@ body {
 }
 
 .card-photo {
-    width: 5rem;
-    height: 7rem;
+    width: 7.5rem;
+    height: 10rem;
     background-color: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 0.25rem;
@@ -178,14 +178,18 @@ body {
 }
 
 .info-label {
-    font-size: 0.75rem;
+    font-size: 1rem;
+    color: #003399;
+    font-weight: 600;
     opacity: 0.75;
     flex-shrink: 0;
+    letter-spacing: 0.5em;
 }
 
 .info-value {
     font-size: 1rem;
     font-weight: 600;
+    letter-spacing: 0.05em;
 }
 
 .card-footer {

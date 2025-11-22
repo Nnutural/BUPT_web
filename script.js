@@ -16,7 +16,7 @@ document.getElementById('cardFlip').addEventListener('click', function() {
 // Update display when input changes
 function updateDisplay() {
     const name = document.getElementById('inputName').value || '张三';
-    const id = document.getElementById('inputId').value || '2024001';
+    const id = document.getElementById('inputId').value || '2023211512';
     const dept = document.getElementById('inputDept').value || '计算机学院';
 
     document.getElementById('displayName').textContent = name;
