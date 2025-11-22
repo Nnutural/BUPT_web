@@ -93,9 +93,8 @@ body {
 .card-header {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    position: relative;
     z-index: 10;
+    padding-right: 0;
 }
 
 .card-title {
@@ -110,12 +109,19 @@ body {
 }
 
 .card-logo {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
     height: 3rem;
-    width: 3rem;
+    width: auto;
+    max-width: 15rem;
+    max-height: 4rem;
     object-fit: contain;
+    object-position: right top;
     opacity: 0.9;
-    position: relative;
     z-index: 10;
+    pointer-events: none;
+    flex-shrink: 0;
 }
 
 .card-center {
@@ -166,11 +172,15 @@ body {
 
 .info-item {
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
 }
 
 .info-label {
     font-size: 0.75rem;
     opacity: 0.75;
+    flex-shrink: 0;
 }
 
 .info-value {
