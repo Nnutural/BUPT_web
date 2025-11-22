@@ -216,6 +216,26 @@ body {
     text-align: right;
 }
 
+.card-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.card-front-notes {
+    font-size: 0.55rem;
+    line-height: 1.15;
+    max-width: 70%;
+    color: #0f172a;
+    opacity: 0.8;
+}
+
+.card-front-notes p + p {
+    margin-top: 0.1rem;
+}
+
 /* Card Back Styles */
 .card-back-content {
     display: flex;
@@ -475,4 +495,3 @@ button {
 .gradient-green {
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
-
