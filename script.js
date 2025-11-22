@@ -44,15 +44,37 @@ function updatePhoto(event) {
     }
 }
 
+// Update card type button styles (primary vs outline)
+function updateCardTypeButtons(selectedType) {
+    const studentBtn = document.querySelector('.button-group button[data-card-type="student"]');
+    const staffBtn = document.querySelector('.button-group button[data-card-type="staff"]');
+
+    if (studentBtn) {
+        studentBtn.classList.remove('btn-primary', 'btn-outline', 'active');
+        if (selectedType === 'student') {
+            studentBtn.classList.add('btn-primary', 'active');
+        } else {
+            studentBtn.classList.add('btn-outline');
+        }
+    }
+
+    if (staffBtn) {
+        staffBtn.classList.remove('btn-primary', 'btn-outline', 'active');
+        if (selectedType === 'staff') {
+            staffBtn.classList.add('btn-primary', 'active');
+        } else {
+            staffBtn.classList.add('btn-outline');
+        }
+    }
+}
+
 // Set card type
-function setCardType(type) {
+function setCardType(type, evt) {
     currentCardType = type;
-    const buttons = document.querySelectorAll('.button-group button');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    updateCardTypeButtons(type);
 
     if (type === 'student') {
-        document.getElementById('cardTypeDisplay').textContent = '学生证';
+        document.getElementById('cardTypeDisplay').textContent = '学生卡';
         document.getElementById('idLabel').textContent = '学号';
         document.getElementById('deptLabel').textContent = '学院';
         document.getElementById('inputIdLabel').textContent = '学号';
@@ -107,6 +129,7 @@ function setTheme(theme) {
 // Initialize
 updateDisplay();
 setTheme('blue');
+updateCardTypeButtons(currentCardType);
 
 // Initialize default photo
 const photoImg = document.getElementById('displayPhoto');

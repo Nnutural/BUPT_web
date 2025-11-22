@@ -29,7 +29,7 @@
                         <div class="card-header">
                             <div>
                                 <!-- <div class="card-title"><strong>北京邮电大学</strong></div> -->
-                                <div class="card-type" id="cardTypeDisplay">学生证</div>
+                                <div class="card-type" id="cardTypeDisplay">学生卡</div>
                             </div>
                             <img src="img/bupt-logo.png" alt="BUPT Logo" class="card-logo">
                         </div>
@@ -72,13 +72,11 @@
                         <img src="img/bupt-logo.png" alt="BUPT Logo" class="card-logo">
 
                         <div class="card-back-content">
-            
-
                             <div class="back-footer"><strong>Beijing University of Posts and Telecommunications</strong></div>
                         </div>
                     </div>
                 </div>
-                <div class="hint-text">点击卡片查看正反两面</div>
+                <div class="hint-text"><strong>点击卡片查看正反两面</strong></div>
             </div>
         </div>
 
@@ -91,10 +89,10 @@
                 <!-- Card Type Selection -->
                 <div class="form-group">
                     <label>卡片类型</label>
-                    <div class="button-group">
-                        <button class="btn-primary active" onclick="setCardType('student')">学生证</button>
-                        <button class="btn-outline" onclick="setCardType('staff')">职工卡</button>
-                    </div>
+                      <div class="button-group">
+                        <button class="btn-primary active" data-card-type="student" onclick="setCardType('student', event)">学生卡</button>
+                        <button class="btn-outline" data-card-type="staff" onclick="setCardType('staff', event)">职工卡</button>
+                      </div>
                 </div>
 
                 <!-- Form Fields -->
