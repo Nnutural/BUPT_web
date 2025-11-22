@@ -80,7 +80,7 @@ function setTheme(theme) {
 
 // Initialize
 updateDisplay();
-setTheme('purple');
+setTheme('blue');
 
 // Initialize default photo
 const photoImg = document.getElementById('displayPhoto');

@@ -82,7 +82,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: white;
+    color: black;
 }
 
 .card-back {
