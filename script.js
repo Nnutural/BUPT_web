@@ -69,13 +69,32 @@ function setTheme(theme) {
     const cardBack = document.getElementById('cardBack');
     const gradient = themeGradients[theme];
 
-    cardFront.style.background = gradient;
+    // 设置卡片背景：正面为白色，背面为渐变背景
+    cardFront.style.background = 'white';
     cardBack.style.background = gradient;
+
+    // 移除之前为信息部分设置的额外样式（因为整个正面已经是白色）
+    const cardCenter = cardFront.querySelector('.card-center');
+    if (cardCenter) {
+        cardCenter.style.background = '';
+        cardCenter.style.padding = '';
+        cardCenter.style.borderRadius = '';
+    }
 
     // Update active button
     const themeButtons = document.querySelectorAll('.theme-btn');
-    themeButtons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    themeButtons.forEach(btn => {
+        btn.classList.remove('active');
+        // 通过按钮的类名匹配主题（如 theme-purple 匹配 'purple'）
+        if (btn.classList.contains(`theme-${theme}`)) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // 如果通过按钮点击调用，确保点击的按钮被激活
+    if (typeof event !== 'undefined' && event.target) {
+        event.target.classList.add('active');
+    }
 }
 
 // Initialize
