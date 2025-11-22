@@ -111,6 +111,7 @@ body {
 }
 
 .card-front {
+    gap: 0.5rem; /* 调整正面各区块（header/center/footer）的间距 */
     padding-bottom: 3rem;
     overflow: hidden;
 }
