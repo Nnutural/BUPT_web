@@ -103,7 +103,7 @@ body {
     backface-visibility: hidden;
     border-radius: 0.65rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    padding: 1.0rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -111,6 +111,8 @@ body {
 }
 
 .card-front {
+    --logo-top: 1.5rem;
+    --logo-height: 3.5rem;
     gap: 0.5rem; /* 调整正面各区块（header/center/footer）的间距 */
     padding-bottom: 3rem;
     overflow: hidden;
@@ -156,9 +158,9 @@ body {
 
 .card-logo {
     position: absolute;
-    top: 1.5rem;
+    top: var(--logo-top, 1.5rem);
     right: 1.5rem;
-    height: 3.5rem;
+    height: var(--logo-height, 3.5rem);
     width: auto;
     max-width: 15rem;
     max-height: 4rem;
@@ -269,13 +271,17 @@ body {
 
 .anti-fake-layer {
     position: absolute;
-    inset: 0;
+    top: calc(var(--logo-top, 1.5rem) + var(--logo-height, 3.5rem)); /* 对齐 BUPT logo 底部 */
+    left: 0;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
     z-index: 2;
     opacity: 0.4;
     mix-blend-mode: screen;
-    background-size: 140px 140px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cdefs%3E%3Cstyle%3E.t%7Bfill:%23004bb1;font-family:%27Times%20New%20Roman%27,%27Segoe%20UI%27,sans-serif;font-size:14px;font-weight:400;opacity:0.35;%7D%3C/style%3E%3C/defs%3E%3Ctext x='12' y='34' class='t'%3EBUPT%3C/text%3E%3Ctext x='96' y='104' class='t'%3EBUPT%3C/text%3E%3Ctext x='44' y='158' class='t'%3EBUPT%3C/text%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    /* background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 100 50' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='35' font-family='Times New Roman,Arial, sans-serif' font-size='12' font-weight='400' fill='%23003399' letter-spacing='-2px' transform='rotate(-30, 50, 25)'%3EBUPT%3C/text%3E%3C/svg%3E"); */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cdefs%3E%3Cstyle%3E.t%7Bfill:%23004bb1;font-family:%27Times%20New%20Roman%27,%27Segoe%20UI%27,sans-serif;font-size:24px;font-weight:400;opacity:0.35;%7D%3C/style%3E%3C/defs%3E%3Ctext x='12' y='34' class='t'%3EBUPT%3C/text%3E%3Ctext x='96' y='104' class='t'%3EBUPT%3C/text%3E%3Ctext x='44' y='158' class='t'%3EBUPT%3C/text%3E%3C/svg%3E");
     background-repeat: repeat;
     
 }

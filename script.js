@@ -8,7 +8,6 @@ const backImages = {
     student: "img/view/沙河校区校园风景/7.沙河校区 公共教学楼1.jpg",
     // staff: "img/view/沙河校区校园风景/4.沙河校区 甲子钟.jpg"
     staff: "img/view/沙河校区校园风景/6.沙河校区 十字路口.jpg"
-
 };
 
 
@@ -19,9 +18,9 @@ document.getElementById('cardFlip').addEventListener('click', function() {
 
 // Update display when input changes
 function updateDisplay() {
-    const name = document.getElementById('inputName').value || '张三';
+    const name = document.getElementById('inputName').value || '佀凯淇';
     const id = document.getElementById('inputId').value || '2023211512';
-    const dept = document.getElementById('inputDept').value || '计算机学院';
+    const dept = document.getElementById('inputDept').value || '网络空间安全学院';
 
     document.getElementById('displayName').textContent = name;
     document.getElementById('displayId').textContent = id;
