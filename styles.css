@@ -116,11 +116,35 @@ body {
     gap: 0.5rem; /* 调整正面各区块（header/center/footer）的间距 */
     padding-bottom: 3rem;
     overflow: hidden;
+    transform: translateZ(1px);
 }
 
 .card-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
+    background-color: white;
+    z-index: 2;
 }
+/* 1. 什么是堆叠上下文？
+在 CSS 中，堆叠上下文决定了元素在 Z 轴（深度）上的渲染顺序。当一个元素被赋予特定的 CSS 属性时，它会创建一个新的堆叠上下文，使其子元素在 Z 轴上的排列独立于外部元素。
+2. Firefox 的渲染差异（Bug 的原因）
+在您的卡片翻转实现中：
+.card-flip 元素设置了 transform-style: preserve-3d;，使其子元素（.card-front 和 .card-back）处于同一个 3D 空间中。
+.card-front 和 .card-back 都设置了 backface-visibility: hidden;，这意味着当它们背对用户时应该被隐藏。
+在 Chrome 和 Edge 中，这两个面被视为具有“零厚度”的平面，浏览器通常能正确地处理 backface-visibility: hidden，并确保在翻转时，背面的内容（包括背景图片）能正确地显示在正面内容的上方。
+然而，Firefox 在处理这种“零厚度”的 3D 元素时，有时会混淆渲染顺序。当卡片翻转时，它可能错误地将背面的内容视为正面的“背面”，导致：
+正面内容穿透： 即使背面有背景色，如果浏览器没有正确地将背面视为一个独立的、位于前方的平面，它可能会显示出正面内容的镜像。
+堆叠顺序混乱： 浏览器未能正确地将翻转后的 .card-back 提升到 .card-front 的上方。
+3. transform: translateZ(1px) 的修复原理
+我们通过在 .card-front 和 .card-back 上添加一个微小的 Z 轴位移 (translateZ(1px)) 来解决这个问题。
+元素
+修复代码
+修复作用
+.card-front
+transform: translateZ(1px);
+创建新的堆叠上下文并启用硬件加速。 这个微小的 Z 轴位移（1 像素）强制浏览器将该元素视为一个独立的 3D 图层。在未翻转状态下，它确保正面略微突出，位于最前方。
+.card-back
+transform: rotateY(180deg) translateZ(1px);
+确保翻转后背面位于最前方。 rotateY(180deg) 将背面旋转到面向用户的位置。紧随其后的 translateZ(1px) 确保了在 3D 空间中，这个面向用户的背面略微突出，明确地位于背对用户的正面之上。 */
 
 /* Card Watermark */
 .card-watermark {
